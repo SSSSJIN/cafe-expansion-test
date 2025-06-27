@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kakaopage.expansion.mapper.RankingMapper">
+  <select id="selectHotBooks" resultType="com.kakaopage.expansion.vo.BookVO">
+    SELECT b.ID,
+           b.TITLE,
+           b.IMAGE,
+           b.AUTHOR
+      FROM BOOK b
+     JOIN BOARD br ON b.ID = br.BOOK_ID
+     WHERE br.HOT_FLAG = 1
+     ORDER BY br.TOP_RANK NULLS LAST, br.REGDATE DESC
+     FETCH FIRST 10 ROWS ONLY
+  </select>
+</mapper>
