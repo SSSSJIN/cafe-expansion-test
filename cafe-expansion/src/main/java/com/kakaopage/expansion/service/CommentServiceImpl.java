@@ -4,7 +4,6 @@ import com.kakaopage.expansion.dao.CommentDao;
 import com.kakaopage.expansion.vo.CommentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -18,13 +17,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentVO> getCommentsByBoard(Long boardId) {
-        return commentDao.selectByBoardId(boardId);
+    public void add(CommentVO vo) {
+        commentDao.insert(vo);
     }
 
     @Override
-    public void addComment(CommentVO vo) {
-        commentDao.insert(vo);
+    public List<CommentVO> getCommentsByBoard(Long boardId) {
+        return commentDao.selectByBoardId(boardId);
     }
 
     @Override

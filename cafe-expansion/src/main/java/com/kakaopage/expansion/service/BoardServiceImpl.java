@@ -44,4 +44,10 @@ public class BoardServiceImpl implements BoardService {
     public void remove(Long id) {
         boardDao.delete(id);
     }
+    
+    @Override
+    public int updateThumbnail(Long id, String thumbnail) {
+        return bookMapper.updateThumbnail(id, thumbnail);
+    }
+
 }

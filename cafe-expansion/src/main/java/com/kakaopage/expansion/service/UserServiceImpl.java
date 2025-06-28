@@ -7,6 +7,7 @@ import com.kakaopage.expansion.vo.UserVO;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     private final UserMapper mapper;
 
     @Autowired
@@ -15,19 +16,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void register(UserVO user) {
-        // 기본 ROLE 설정
-        user.setRole("USER");
-        // 비밀번호는 평문 그대로 저장(간단 구현)
-        mapper.insert(user);
+    public UserVO findByKakaoId(String kakaoId) {
+        return mapper.findByKakaoId(kakaoId);
     }
 
     @Override
-    public UserVO login(String username, String rawPassword) {
-        UserVO dbUser = mapper.findByUsername(username);
-        if (dbUser != null && dbUser.getPassword().equals(rawPassword)) {
-            return dbUser;
-        }
-        return null;
+    public void save(UserVO user) {
+        mapper.insert(user);
     }
 }
